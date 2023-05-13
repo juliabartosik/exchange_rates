@@ -4,5 +4,26 @@
 
 .spacer {
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+}
+
+.navbar .navbar-brand.mx-auto.margin-left {
+  margin-left: 20px;
+}
+
+
+.margin-bottom {
+  margin-bottom: 100px;
+}
+
+.lowest-price {
+  color: green;
+}
+
+.highest-price {
+  color: red;
+}
+
+.justify-content-center {
+  justify-content: center;
 }
