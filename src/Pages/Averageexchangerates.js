@@ -8,6 +8,8 @@ function Averageexchangerates() {
   const [publicationDate, setPublicationDate] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
   const [sortType, setSortType] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const url = 'http://api.nbp.pl/api/exchangerates/tables/A?format=json';
@@ -20,6 +22,13 @@ function Averageexchangerates() {
 
         const publicationDate = new Date(table.effectiveDate);
         setPublicationDate(publicationDate);
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(true);
+        setLoading(false);
       });
   }, []);
 
@@ -41,7 +50,20 @@ function Averageexchangerates() {
     setSortType(type);
   };
 
-  if (!table || !publicationDate) {
+  if (error) {
+    return (
+      <Container id='aer' className='spacer'>        
+        <h2>Table of exchange rates of type A for the day</h2>
+        <p>
+          Data loading...
+          <br />
+          <Spinner animation='border' role='status'></Spinner>
+        </p>
+        </Container>
+    );
+  }
+
+  if (loading) {
     return (
       <p>
         Data loading...
@@ -53,10 +75,7 @@ function Averageexchangerates() {
 
   return (
     <Container id='aer' className='spacer'>
-      <h2>
-        Table of exchange rates of type A for the day{' '}
-        {publicationDate.toLocaleDateString()}
-      </h2>
+      <h2>Table of exchange rates of type A for the day{' '} {publicationDate ? publicationDate.toLocaleDateString() : ''}</h2>
 
       <Table>
         <thead>
