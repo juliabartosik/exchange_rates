@@ -41,7 +41,7 @@ const CurrencyConverter = () => {
 
   if (error) {
     return (
-      <Container id='aer' className='spacer'>        
+      <Container id='aer' className='cur '>        
         <h2>Currency converter</h2>
         <p>
           Data loading...
