@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button, Spinner } from "react-bootstrap";
 
+const API_URL = 'http://api.nbp.pl/api/exchangerates';
 
 const CurrencyConverter = () => {
   const [currencies, setCurrencies] = useState([]);
@@ -8,20 +9,28 @@ const CurrencyConverter = () => {
   const [toCurrency, setToCurrency] = useState('');
   const [amount, setAmount] = useState(1);
   const [convertedAmount, setConvertedAmount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch('http://api.nbp.pl/api/exchangerates/tables/A?format=json')
+    fetch(`${API_URL}/tables/A?format=json`)
       .then(response => response.json())
       .then(data => {
         setCurrencies(data[0].rates);
         setFromCurrency(data[0].rates[0].code);
         setToCurrency(data[0].rates[1].code);
+
+        setLoading(false);
       })
-      .catch(error => console.log(error));
+      .catch(error => { 
+        console.log(error);
+        setError(true);
+        setLoading(false);
+      });
   }, []);
 
   const convertCurrency = () => {
-    fetch(`http://api.nbp.pl/api/exchangerates/rates/A/${fromCurrency}/?format=json`)
+    fetch(`${API_URL}/rates/A/${fromCurrency}/?format=json`)
       .then(response => response.json())
       .then(data => {
         const rate = data.rates[0].mid;
@@ -29,6 +38,29 @@ const CurrencyConverter = () => {
       })
       .catch(error => console.log(error));
   };
+
+  if (error) {
+    return (
+      <Container id='aer' className='spacer'>        
+        <h2>Currency converter</h2>
+        <p>
+          Data loading...
+          <br />
+          <Spinner animation='border' role='status'></Spinner>
+        </p>
+        </Container>
+    );
+  }
+
+  if (loading) {
+    return (
+      <p>
+        Data loading...
+        <br />
+        <Spinner animation='border' role='status'></Spinner>
+      </p>
+    );
+  }
 
   return (
     <Container id='cc'className="mt-5 margin-bottom spacer">
