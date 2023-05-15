@@ -10,7 +10,7 @@ const CurrencyConverter = () => {
   const [convertedAmount, setConvertedAmount] = useState(0);
 
   useEffect(() => {
-    fetch('http://api.nbp.pl/api/exchangerates/tables/A?format=json')
+    fetch('https://api.nbp.pl/api/exchangerates/tables/A?format=json')
       .then(response => response.json())
       .then(data => {
         setCurrencies(data[0].rates);
@@ -21,7 +21,7 @@ const CurrencyConverter = () => {
   }, []);
 
   const convertCurrency = () => {
-    fetch(`http://api.nbp.pl/api/exchangerates/rates/A/${fromCurrency}/?format=json`)
+    fetch(`https://api.nbp.pl/api/exchangerates/rates/A/${fromCurrency}/?format=json`)
       .then(response => response.json())
       .then(data => {
         const rate = data.rates[0].mid;

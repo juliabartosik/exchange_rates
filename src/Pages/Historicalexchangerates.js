@@ -10,7 +10,7 @@ function Historicalexchangerates () {
   useEffect(() => {
     const fetchExchangeRates = async () => {
     const response = await fetch(
-      `http://api.nbp.pl/api/exchangerates/rates/A/${currency}/last/14/?format=json`
+      `https://api.nbp.pl/api/exchangerates/rates/A/${currency}/last/14/?format=json`
     );
     const data = await response.json();
     const chartData = [["Date", "Exchange Rate"]];

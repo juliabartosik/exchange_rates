@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Spinner, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,27 +11,26 @@ function Averageexchangerates() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  
-useEffect(() => {
-  const url = 'https://api.nbp.pl/api/exchangerates/tables/A?format=json';
+  useEffect(() => {
+    const url = 'https://api.nbp.pl/api/exchangerates/tables/A?format=json';
 
-  axios.get(url)
-    .then((response) => {
-      const data = response.data;
-      const table = data[0];
-      setTable(table);
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        const table = data[0];
+        setTable(table);
 
-      const publicationDate = new Date(table.effectiveDate);
-      setPublicationDate(publicationDate);
+        const publicationDate = new Date(table.effectiveDate);
+        setPublicationDate(publicationDate);
 
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error(error);
-      setError(true);
-      setLoading(false);
-    });
-}, []);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
 
   const handleSort = (type) => {
     let sortedRates;
