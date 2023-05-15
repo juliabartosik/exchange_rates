@@ -31,7 +31,7 @@ const CurrencyConverter = () => {
   };
 
   return (
-    <Container id='cc'className="mt-5 margin-bottom cur">
+    <Container id='cc'className="mt-5 margin-bottom">
       <h1>Currency Converter</h1>
       <Row className="mt-3 align-items-center">
         <Col md={6}>

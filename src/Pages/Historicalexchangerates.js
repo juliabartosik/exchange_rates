@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, DropdownButton, Dropdown, Spinner } from "react-bootstrap";
 import { Chart } from "react-google-charts";
 
-function Historicalexchangerates () {
+function HistoricalExchangeRates () {
   const [data, setData] = useState(null);
   const [currency, setCurrency] = useState("USD");
 
@@ -61,7 +61,7 @@ function Historicalexchangerates () {
                     loader={<div>Loading Chart...</div>}
                     data={data}
                     options={{
-                      chartArea: { width: "85%", height: "75%" },
+                      chartArea: { width: "75%", height: "70%" },
                       hAxis: {
                         title: "Date",
                         format: "dd/MM/yy",
@@ -88,4 +88,4 @@ function Historicalexchangerates () {
   );
 }
 
-export default Historicalexchangerates;
+export default HistoricalExchangeRates;

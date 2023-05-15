@@ -64,7 +64,7 @@ function GoldPrice() {
               {lowestPrice && highestPrice ? (
                 <>
                   <h5 className="text-center lowest-price">Lowest: {lowestPrice.toFixed(2)} PLN</h5>
-                  <h5 className="text-center highest-price">Highest: {highestPrice.toFixed(2)} PL</h5>
+                  <h5 className="text-center highest-price">Highest: {highestPrice.toFixed(2)} PLN</h5>
 
                 </>
               ) : (
@@ -88,7 +88,7 @@ function GoldPrice() {
                   loader={<div>Loading Chart...</div>}
                   data={historicalData}
                   options={{
-                    chartArea: { width: "80%", height: "65%" },
+                    chartArea: { width: "75%", height: "70%" },
                     hAxis: {
                       title: "Date",
                       format: "dd/MM/yy",

@@ -3,7 +3,7 @@ import { Container, Table, Spinner, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
-function Averageexchangerates() {
+function AverageExchangeRates() {
   const [table, setTable] = useState(null);
   const [publicationDate, setPublicationDate] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
@@ -125,4 +125,4 @@ function Averageexchangerates() {
     );
 }
 
-export default Averageexchangerates;
+export default AverageExchangeRates;
