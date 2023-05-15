@@ -13,7 +13,7 @@ function GoldPrice() {
   useEffect(() => {
     const fetchCurrentPrice = async () => {
       const response = await fetch(
-        "http://api.nbp.pl/api/cenyzlota?format=json"
+        "https://api.nbp.pl/api/cenyzlota?format=json"
       );
       const data = await response.json();
       setCurrentPrice(data[0].cena);
@@ -21,7 +21,7 @@ function GoldPrice() {
 
     const fetchHistoricalData = async () => {
       const response = await fetch(
-        "http://api.nbp.pl/api/cenyzlota/last/30/?format=json"
+        "https://api.nbp.pl/api/cenyzlota/last/30/?format=json"
       );
       const data = await response.json();
       const chartData = [["Date", "Price"]];
