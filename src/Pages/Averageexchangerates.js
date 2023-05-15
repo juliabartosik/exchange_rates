@@ -14,7 +14,7 @@ function Averageexchangerates() {
 
   
 useEffect(() => {
-  const url = 'http://api.nbp.pl/api/exchangerates/tables/A?format=json';
+  const url = 'https://api.nbp.pl/api/exchangerates/tables/A?format=json';
 
   axios.get(url)
     .then((response) => {
